@@ -11,7 +11,7 @@ with open('model.pkl', 'rb') as f:
 app = FastAPI()
 
 class UserInput(BaseModel):
-
+    
     age : Annotated[int, Field(..., title='Age', description='Age of individual', gt=0, lt=130)]
     gender : Annotated[Literal['male', 'female'], Field(..., title='Gender', description='Gender of individual')]
     weight_kg : Annotated[float, Field(..., title='Weight', description='Weight of individual (in Kgs)', gt=0)]
@@ -40,4 +40,4 @@ def predict_acne_risk(data: UserInput):
 
     risk = 'acne_risk' if prediction == 1 else 'no acne risk'
 
-    return JSONResponse(status_code=201, content={'message':f"You have {risk}"})
+    return JSONResponse(status_code=201, content={'message':f"You have {risk}."})
