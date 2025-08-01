@@ -38,6 +38,6 @@ def predict_acne_risk(data: UserInput):
     
     prediction = model.predict(input_df)[0]
 
-    risk = 'acne_risk' if prediction == 1 else 'no acne risk'
+    risk = 'acne risk' if prediction == 1 else 'no acne risk'
 
     return JSONResponse(status_code=201, content={'message':f"You have {risk}."})
