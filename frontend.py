@@ -39,18 +39,3 @@ if st.button("Predict Acne Risk"):
 
     except requests.exceptions.ConnectionError:
         st.error('Server Error!')
-
-
-# input_data = {
-#         "age": 22,
-#         "gender": 'male',
-#         "weight_kg": 55,
-#         "diet": 'unhealthy',
-#         "sleep_hours": 2.0,
-#         "water_intake_liters": 0.1,
-#         "smoking_or_vaping": 'yes'
-#     }
-
-# response = requests.post(URL, json=input_data)
-# result = response.json()
-# print(result)
