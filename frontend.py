@@ -5,7 +5,7 @@ URL = 'http://127.0.0.1:8000/predict'
 
 st.title("Acne Risk Predictor")
 
-st.markdown("Enter a few details below and know if have risk of developing acne:")
+st.markdown("Enter a few details below and know if you have risk of developing acne:")
 
 # Input fields
 age = st.number_input("Age", min_value=1, max_value=119, value=30)
