@@ -43,7 +43,8 @@ Then, <br>
 - Passed the features data as a Pandas Dataframe to our model that we imported earlier in the same file.
 - Called the predict function **model.predict(input_data)** that calls the Pipeline object in our **model** file
 
-So basically, this is our Pipeline object in the model.pkl file
+To understand this better, basically this happens: <br>
+- This is our Pipeline object in the model.pkl file
 
 ```powershell
 pipeline = Pipeline(steps=[
@@ -52,13 +53,13 @@ pipeline = Pipeline(steps=[
 ])
 ```
 
-and this is what we call with **model.predict(input_data)[0]** where the **X_test** is actually **input_df**
+- and this is what we call with **model.predict(input_data)[0]** where the **X_test** is actually **input_df**
 
 ```powershell
 y_pred = pipeline.predict(X_test)
 ```
 
-Take a look at this code snippet:
+Take a look at this endpoint code:
 
 ```powershell
 @app.post('/predict')
