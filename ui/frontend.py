@@ -1,7 +1,8 @@
 import streamlit as st
 import requests
 
-URL = 'http://127.0.0.1:8000/predict'
+# URL = 'http://127.0.0.1:8000/predict'
+URL = 'http://host.docker.internal:8000/predict'
 
 st.title("Acne Risk Predictor")
 
