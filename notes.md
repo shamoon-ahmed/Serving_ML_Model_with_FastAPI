@@ -145,3 +145,18 @@ An additional step we took is dockerizing our Application. <br> So till now we n
 That box is called an image. So we built an image of our application with the help of Dockerfile that contains all the commands to build a Docker image. We then pushed that Docker image to DockerHub so we can pull it later and anyone looking for an Acne Risk Predictor made with FastAPI and Streamlit can pull our image and run a container on their machine. 
 <br> <br>
 Our application would run the same way on the other users' machine as it was running in our machine. This is the benefit of Docker
+<br> <br>
+For the other user, to run the same application that is running perfectly on our machine, we take these steps:
+
+1. **Build** an image of our application. This includes debugging and removing all the errors that might come while running our application until it runs perfectly.
+- `docker build -t shamoonai/acne_risk_predictor .`
+2. **Push** that image to DockerHub where our account is logged in. (We must login from our local environment as well inorder to push that image from VS code to DockerHub).
+- To Login: `docker login`
+- To push image to DockerHub: `docker push <image name>` in our case `docker push shamoonai/acne_risk_predictor`
+3. **Pull** that image from DockerHub
+- `docker pull <image name on DockerHub>` in our case `docker pull shamoonai/acne_risk_predictor`
+4. **Run** our image that we just pulled from DockerHub. 
+- `docker run -p <image name>` 
+<br> <br> In our case, we have a FastAPI server and a Streamlit server. So we need to run both servers by adding both ports in the command.
+- `docker run -p 8501:8501 -p 8000:8000 shamoonai/acne_risk_predictor`
+<br> *8501:8501 to run the Streamlit server and 8000:8000 to run the FastAPI server*
