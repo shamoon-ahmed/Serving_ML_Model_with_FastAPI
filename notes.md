@@ -23,9 +23,9 @@ with open(pickle_model_path, "wb") as f:
     pickle.dump(pipeline, f)
 ```
 
-## Creating our endpoint
+## Creating Pydantic Model
 
-In a different file **app.py** we built a Pydantic model for data and type validation of the features that we want the user to provide to get the right prediction (acne risk)
+In a different file **schema/user_input.py** we built a Pydantic model for data and type validation of the features that we want the user to provide to get the right prediction (acne risk)
 
 ```powershell
 class UserInput(BaseModel):
@@ -38,10 +38,13 @@ class UserInput(BaseModel):
     water_intake_liters : Annotated[float, Field(..., title='Water Intake', description='Water Intake (in liters)')]
     smoking_or_vaping : Annotated[Literal['yes', 'no'], Field(..., title='Smoke or Vape', description='Do you smoke or vape?', examples=['yes', 'no'])]
 ```
-Then, <br>
+
+## Creating our endpoint
+
+Then, in **app.py**<br>
 - We created our endpoint **/predict** that takes the pydantic object as parameter
 - Passed the features data as a Pandas Dataframe to our model that we imported earlier in the same file.
-- Called the predict function **model.predict(input_data)** that calls the Pipeline object in our **model** file
+- Then in **prediction/predict.py** Called the predict function **model.predict(input_data)** that calls the Pipeline object in our **model** file
 
 To understand this better, basically this happens: <br>
 - This is our Pipeline object in the model.pkl file
@@ -134,3 +137,11 @@ Run Streamlit server with:
 ```powershell
 streamlit run filename.py
 ```
+
+## Dockerize The Entire Application
+
+An additional step we took is dockerizing our Application. <br> So till now we need to run our FastAPI server, then run our streamlit application. But by dockerizing our application (means putting everything like libraries, their versions, all codes n stuff into a box). 
+<br> <br>
+That box is called an image. So we built an image of our application with the help of Dockerfile that contains all the commands to build a Docker image. We then pushed that Docker image to DockerHub so we can pull it later and anyone looking for an Acne Risk Predictor made with FastAPI and Streamlit can pull our image and run a container on their machine. 
+<br> <br>
+Our application would run the same way on the other users' machine as it was running in our machine. This is the benefit of Docker
